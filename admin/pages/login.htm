@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="../../src/output.css" />
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 relative">
+
+  <!-- Alert Messages -->
+  <div class="fixed top-6 right-6 z-50 space-y-4 w-[330px]">
+
+     <!-- Right Slide Alert -->
+    <div id="sideAlert" class="fixed top-6 right-[-400px] z-50 w-[330px] rounded-2xl border border-red-200 bg-white shadow-2xl px-5 py-4 transition-all duration-500"> 
+    </div>
+
+    <!-- Success -->
+   <div id="successMessage" style="display: none;">
+    <div class="rounded-2xl border border-green-200 bg-white shadow-xl px-5 py-4">
+      
+    </div>
+   </div>
+
+    <!-- Error -->
+    <div id="errorMessage" style="display: none;">
+        <div class=" rounded-2xl border border-red-200 bg-white shadow-xl px-5 py-4"> 
+        </div>
+    </div>
+
+    <!-- Info -->
+    <div id="infoMessage" style="display: none;">
+        <div class=" rounded-2xl border border-blue-200 bg-white shadow-xl px-5 py-4">
+        </div>
+    </div>
+  </div>
+
+  <!-- Login Card -->
+  <div class="w-[390px] bg-white rounded-2xl shadow-2xl p-8">
+
+    <!-- Header -->
+    <h2 class="text-3xl font-bold text-center text-blue-800">
+      Xoş gəlmisiniz
+    </h2>
+
+    <p class="text-center text-gray-500 text-sm mt-2 mb-8">
+      Davam etmək üçün daxil olun
+    </p>
+
+    <!-- Email -->
+    <div class="mb-4">
+      <input
+        id="email"
+        type="email"
+        placeholder="E-poçt ünvanı"
+        class="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none
+        focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition"
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3 relative">
+      <input
+        id="password"
+        type="password"
+        placeholder="Şifrə"
+        class="w-full px-4 py-3 pr-12 border border-gray-200 rounded-xl outline-none
+        focus:border-blue-400 focus:ring-4 focus:ring-blue-100 transition"
+      />
+
+      <!-- Eye Button -->
+      <button
+        type="button"
+        onclick="showPassword()"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-blue-600"
+      >
+        👁
+      </button>
+    </div>
+
+    <!-- Forgot -->
+    <div class="flex justify-end mb-6">
+      <a href="#" class="text-sm text-blue-600 hover:underline">
+        Şifrəni unutmusunuz?
+      </a>
+    </div>
+
+    <!-- Login Button -->
+    <button
+      onclick="login()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold
+      py-3 rounded-xl transition shadow-md hover:shadow-lg"
+    >
+      Daxil ol
+    </button>
+
+    <!-- Footer -->
+    <p class="text-center text-sm text-gray-500 mt-6">
+      Hesabınız yoxdur?
+      <a href="register.htm" class="text-blue-600 hover:underline font-medium">
+        Qeydiyyatdan keçin
+      </a>
+    </p>
+
+  </div>
+
+  <script src="../js/auth.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="../../src/output.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <div
+        class="bg-gray-700 flex items-center justify-between px-3 sm:px-6 py-2 relative"
+      >
+        <!-- LEFT (menu button) -->
+        <button
+          onclick="toggleSidebar()"
+          class="text-white text-xl p-2 rounded-md hover:bg-gray-600 active:scale-95 transition-all duration-200"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- SIDEBAR -->
+        <div
+          id="sidebar"
+          class="fixed top-0 left-0 h-full w-64 bg-gray-800 text-white transform -translate-x-full transition-transform duration-300 z-50"
+        >
+          <!-- HEADER -->
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-600"
+          >
+            <a href="Dashboard.htm" class="text-lg font-semibold cursor-pointer"
+              >Admin Panel</a
+            >
+            <button
+              onclick="toggleSidebar()"
+              class="text-gray-300 hover:text-white"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- MENU -->
+          <ul class="flex flex-col p-4 gap-3">
+            <li class="hover:bg-gray-700 p-3 rounded cursor-pointer transition">
+              <a href="Dashboard.htm">Dashboard</a>
+            </li>
+            <li class="hover:bg-gray-700 p-3 rounded cursor-pointer transition">
+              <a href="Service.htm">Service</a>
+            </li>
+            <li class="hover:bg-gray-700 p-3 rounded cursor-pointer transition">
+              <a href="#"> Users</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- OVERLAY -->
+        <div
+          id="overlay"
+          onclick="toggleSidebar()"
+          class="fixed inset-0 bg-black/40 hidden z-40 backdrop-blur-sm"
+        ></div>
+
+        <!-- RIGHT SIDE (icons) -->
+        <div class="flex items-center gap-2">
+          <!-- SEARCH ICON (mobile) -->
+          <button
+            onclick="toggleSearch()"
+            class="sm:hidden text-white text-lg p-2 rounded-md hover:bg-gray-600 active:scale-95 transition"
+          >
+            <i class="fa-brands fa-sistrix"></i>
+          </button>
+
+          <!-- PROFILE (only desktop) -->
+          <div class="hidden md:flex items-center gap-3 text-white">
+            <img
+              class="w-10 h-10 rounded-full object-cover border-2 border-white"
+              src="../img/spiderman.jpg"
+              alt="user"
+            />
+            <div class="leading-tight">
+              <h4 class="text-sm font-medium">Asildar Haciyev</h4>
+              <p class="text-xs text-gray-300">PRODUCT ADMIN</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DESKTOP SEARCH -->
+        <div
+          class="hidden sm:flex absolute left-1/2 -translate-x-1/2 items-center bg-white rounded-full px-4 py-2 w-full max-w-lg transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:shadow-lg"
+        >
+          <i class="fa-brands fa-sistrix text-gray-400"></i>
+          <input id="searchOne"
+            class="w-full outline-none border-none ml-3 text-sm"
+            type="search"
+            placeholder="Search..."
+          />
+        </div>
+
+        <!-- MOBILE SEARCH (hidden by default) -->
+        <div
+          id="mobileSearch"
+          class="absolute left-0 top-full w-full px-3 mt-2 hidden"
+        >
+          <div
+            class="flex items-center bg-white rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-blue-400 shadow-md"
+          >
+            <i class="fa-brands fa-sistrix text-gray-400"></i>
+            <input
+              class="w-full outline-none border-none ml-3 text-sm"
+              type="search"
+              placeholder="Search..."
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ! Modal -->
+    <!-- Modal Overlay -->
+    <div
+      id="modalCart"
+      style="display: none"
+      class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm overflow-y-auto"
+    >
+      <!-- Center Wrapper -->
+      <div class="min-h-screen flex items-center justify-center p-4">
+        <!-- Modal Box -->
+        <div
+          class="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl animate-modal my-10"
+        >
+          <!-- Header -->
+          <div
+            class="sticky top-0 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 px-8 py-6 text-white flex items-center justify-between rounded-t-3xl z-10"
+          >
+            <div>
+              <h2 class="text-3xl font-bold">Yeni Məhsul Əlavə Et</h2>
+              <p class="text-sm text-blue-100 mt-1">
+                Admin panel üçün məhsul məlumatları
+              </p>
+            </div>
+
+            <button
+              onclick="modalDash()"
+              class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-xl"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- !Form Body-->
+          <form id="updateFrom" class="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <input type="hidden" id="productID">
+              <label class="text-sm font-semibold text-gray-700 mb-2 block">
+                Məhsul Adı
+              </label>
+              <input
+              id="productName"
+                type="text"
+                class="w-full border border-gray-200 rounded-2xl px-4 py-3"
+              />
+            </div>
+
+            <div>
+              <label class="text-sm font-semibold text-gray-700 mb-2 block">
+                Qiymət
+              </label>
+              <input
+              id="productPrice"
+                type="number"
+                class="w-full border border-gray-200 rounded-2xl px-4 py-3"
+              />
+            </div>
+
+            <div>
+              <label class="text-sm font-semibold text-gray-700 mb-2 block">
+                Kateqoriya
+              </label>
+             <input id="productCategory" type="text" class="w-full border border-gray-200 rounded-2xl px-4 py-3"/>
+            </div>
+
+            <div>
+              <label class="text-sm font-semibold text-gray-700 mb-2 block">
+                Stok
+              </label>
+              <input
+              id="productStock"
+                type="number"
+                class="w-full border border-gray-200 rounded-2xl px-4 py-3"
+              />
+            </div>
+             <div>
+              <label class="text-sm">Status</label>
+              <select id="productStatus"
+                class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none">
+                <option value="1">1 - Active</option>
+                <option value="0">0 - Deactive</option>
+              </select>
+            </div>
+             <div>
+              <label class="text-sm font-semibold text-gray-700 mb-2 block">
+                Icon
+              </label>
+              <input
+              id="productIcon"
+                type="text"
+                class="w-full border border-gray-200 rounded-2xl px-4 py-3"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="text-sm font-semibold text-gray-700 mb-2 block">
+                Şəkil URL
+              </label>
+              <input
+              id="productImage"
+                type="text"
+                class="w-full border border-gray-200 rounded-2xl px-4 py-3"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="text-sm font-semibold text-gray-700 mb-2 block">
+                Açıqlama
+              </label>
+              <textarea
+              id="productDesc"
+                rows="5"
+                class="w-full border border-gray-200 rounded-2xl px-4 py-3"
+              ></textarea>
+            </div>
+
+            <!-- Buttons -->
+            <div class="md:col-span-2 flex justify-end gap-4 pt-4 pb-4">
+              <button
+                type="button"
+                onclick="closeModal()"
+                class="px-6 py-3 rounded-2xl bg-gray-100 hover:bg-gray-200"
+              >
+                Ləğv Et
+              </button>
+
+              <button
+                type="button"
+                onclick="saveData()"
+                class="px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white"
+              >
+                Yadda Saxla
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+<!-- ! yigim -->
+
+<main class="min-h-screen bg-[#0b1120] text-white">
+  <section class="flex items-center justify-between p-12">
+        <div>
+          <h2 class="text-4xl font-bold py-4">Layihə elave et</h2>
+          <p>Layihənizi bura əlavə edin.</p>
+        </div>
+        <button
+          onclick="modalDash()"
+         class="px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold shadow-lg hover:scale-105 duration-300"
+        >
+          Əlavə et
+        </button>
+      </section>
+
+  <!-- STATS -->
+  <section class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+    <div class="bg-[#111827] border border-slate-800 rounded-3xl p-6">
+      <p class="text-slate-400">Ümumi Məhsul</p>
+      <h2 class="text-4xl font-bold mt-2 text-cyan-400">152</h2>
+    </div>
+
+    <div class="bg-[#111827] border border-slate-800 rounded-3xl p-6">
+      <p class="text-slate-400">Aktiv</p>
+      <h2 class="text-4xl font-bold mt-2 text-emerald-400">121</h2>
+    </div>
+
+    <div class="bg-[#111827] border border-slate-800 rounded-3xl p-6">
+      <p class="text-slate-400">Deaktiv</p>
+      <h2 class="text-4xl font-bold mt-2 text-rose-400">31</h2>
+    </div>
+
+    <div class="bg-[#111827] border border-slate-800 rounded-3xl p-6">
+      <p class="text-slate-400">Gəlir</p>
+      <h2 class="text-4xl font-bold mt-2 text-amber-400">$24.8K</h2>
+    </div>
+
+  </section>
+
+  <!-- FILTER -->
+  <section class="max-w-7xl mx-auto px-6 pb-6">
+
+    <div class="bg-[#111827] border border-slate-800 rounded-3xl p-5">
+
+      <div class="flex flex-col xl:flex-row gap-5 xl:items-center xl:justify-between">
+
+        <!-- CATEGORY BUTTONS -->
+        <div class="flex flex-wrap gap-3">
+
+          <button class="px-5 py-2.5 rounded-2xl bg-cyan-500 text-white font-semibold shadow-md">
+            Hamısı
+          </button>
+
+          <button class="px-5 py-2.5 rounded-2xl bg-[#1e293b] text-slate-300 hover:bg-slate-700 hover:text-white duration-300">
+            Elektronika
+          </button>
+
+          <button class="px-5 py-2.5 rounded-2xl bg-[#1e293b] text-slate-300 hover:bg-slate-700 hover:text-white duration-300">
+            Geyim
+          </button>
+
+          <button class="px-5 py-2.5 rounded-2xl bg-[#1e293b] text-slate-300 hover:bg-slate-700 hover:text-white duration-300">
+            Ayaqqabı
+          </button>
+
+          <button class="px-5 py-2.5 rounded-2xl bg-[#1e293b] text-slate-300 hover:bg-slate-700 hover:text-white duration-300">
+            Ev üçün
+          </button>
+
+        </div>
+
+        <!-- SELECTS -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full xl:w-auto">
+
+          <select class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
+            <option>Sırala</option>
+            <option>Yeni</option>
+            <option>Köhnə</option>
+          </select>
+
+          <select class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
+            <option>Status</option>
+            <option>Aktiv</option>
+            <option>Deaktiv</option>
+          </select>
+
+          <select class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
+            <option>Qiymət</option>
+            <option>Ucuzdan Bahaya</option>
+            <option>Bahadan Ucuza</option>
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="max-w-7xl mx-auto px-6 pb-10">
+
+    <div id="cartList"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+   
+
+    </div>
+    <div class="flex items-center justify-center gap-4 mt-8">
+      <button id="prevBtn" class="px-5 py-2 rounded-xl bg-[#1e293b] text-white font-medium border border-slate-700 hover:bg-cyan-500 hover:border-cyan-400 hover:scale-105 duration-300 disabled:opacity-40 disabled:cursor-not-allowed"> ← Geri</button>
+      <span id="pageNum">Səhifə: 1</span>
+      <button id="nextBtn" class="px-5 py-2 rounded-xl bg-[#1e293b] text-white font-medium border border-slate-700 hover:bg-cyan-500 hover:border-cyan-400 hover:scale-105 duration-300 disabled:opacity-40 disabled:cursor-not-allowed">İrəli →</button>
+    </div>
+
+  </section>
+
+
+</main>
+<!-- ! yigim -->
+
+<script src="../js/dashboard.js"></script>
+  <script src="../js/app.js"></script>
+  </body>
+</html>

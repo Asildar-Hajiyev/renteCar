@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+</head>
+<body>
+<!-- Modal Overlay -->
+<div id="modalOverlay"
+     class="hidden fixed inset-0 p-4 flex justify-center items-center w-full h-full z-[1000]
+     before:fixed before:inset-0 before:bg-[rgba(0,0,0,0.5)]">
+
+    <!-- Dialog -->
+    <div role="dialog" aria-modal="true" aria-labelledby="modal-title"
+         tabindex="-1"
+         class="w-full max-w-5xl bg-white border border-slate-100 shadow-lg rounded-lg
+         relative max-h-[95vh] overflow-y-auto overflow-x-hidden outline-none p-4 md:p-6">
+
+        <!-- Close -->
+        <div class="flex items-center pb-3 border-slate-300">
+            <button type="button" id="closeModal" aria-label="Close modal"
+                class="ml-auto flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="w-3 h-3 cursor-pointer fill-slate-500 hover:fill-red-600"
+                     viewBox="0 0 329.269 329">
+                    <path d="M194.8 164.77 323.013 36.555c8.343-8.34 8.343-21.825 0-30.164-8.34-8.34-21.825-8.34-30.164 0L164.633 134.605 36.422 6.391c-8.344-8.34-21.824-8.34-30.164 0-8.344 8.34-8.344 21.824 0 30.164l128.21 128.215L6.259 292.984c-8.344 8.34-8.344 21.825 0 30.164a21.27 21.27 0 0 0 15.082 6.25c5.46 0 10.922-2.09 15.082-6.25l128.21-128.214 128.216 128.214a21.27 21.27 0 0 0 15.082 6.25c5.46 0 10.922-2.09 15.082-6.25 8.343-8.34 8.343-21.824 0-30.164z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div class="my-6 w-full flex flex-col md:flex-row items-center gap-6 justify-center">
+
+            <!-- Image -->
+         <div class="w-full max-w-[400px] overflow-hidden rounded-lg">
+            <img
+                id="zoomImg"
+                class="w-full object-contain transition-transform duration-200 ease-out"
+                src="../img/imgi_20_p2.jpg"
+                alt=""
+            />
+            </div>
+           
+           <div class="flex flex-col items-start justify-center gap-2 ">
+    
+                <h2 class="text-2xl font-semibold">Car 3</h2>
+
+                <a href="#" class="text-gray-600 hover:text-black transition">
+                    View full product details <i class="fa-solid fa-right-long"></i>
+                </a>
+
+                <span class="text-lg font-medium">$350</span>
+
+                <span class="text-gray-500 text-sm">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, unde...
+                </span>
+
+                <!-- Quantity -->
+                <div class="flex items-center justify-between gap-3 mt-2">
+
+                  <div>
+                      <button class="px-3 py-1 bg-gray-400 rounded-full hover:bg-[#1E1601] hover:text-yellow-500 transition">
+                        -
+                    </button>
+
+                    <input 
+                        class="w-[60px] border border-yellow-500 rounded-2xl text-center outline-none"
+                        type="text"
+                        value="1"
+                    >
+
+                    <button class="px-3 py-1 bg-gray-400 rounded-full hover:bg-[#1E1601] hover:text-yellow-500 transition">
+                        +
+                    </button>
+                  </div>
+                  <button onclick="" class="border cursor-pointer border-yellow-500 rounded-full px-2 py-1 bg-yellow-500 hover:border hover:bg-white hover:text-yellow-500 px-10">
+                    <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                  </button>
+                  <span class="border border-yellow-500 rounded-full px-2 py-1 bg-yellow-500 hover:border hover:bg-white hover:text-yellow-500"><i class="fa-regular fa-heart "></i></span>
+                  <span class="border border-yellow-500 rounded-full px-2 py-1 bg-yellow-500 hover:border hover:bg-white hover:text-yellow-500"><i class="fa-solid fa-code-compare "></i></span>
+
+                </div>
+                <div class="w-full">
+                    <a href="#" class="border border-[#E2C763] bg-[#E2C763] rounded-2xl px-4 w-full hover:border-yellow-500 hover:bg-white hover:text-yellow-500 hover:transition duration-300 ease-in-out transform hover:scale-105" ><i class="fa-solid fa-link"></i> Purchase from ThemeForest</a>
+                </div>
+                <a href="#"
+                class="w-full flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-evenly gap-3 rounded-sm py-3 px-3 my-3 bg-[#F4F4F4] border border-[#F4F4F4] hover:border-green-500 hover:text-green-500 transition duration-300">
+
+                    <!-- Icon -->
+                    <div class="shrink-0 py-3 px-4 bg-green-500 rounded-sm">
+                        <i class="fa-solid fa-phone text-white"></i>
+                    </div>
+
+                    <!-- Text -->
+                    <div class="text-center sm:text-left ">
+                        <p class="text-xs text-gray-400 leading-relaxed ">
+                            Düzgün məhsul seçməkdə köməyə ehtiyacınız varmı?
+                        </p>
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            Məhsul mütəxəssisi ilə 1-312-800-0000 nömrəsi ilə danışın
+                        </p>
+                    </div>
+
+                </a>
+                <div class="w-full border-t border-gray-400">
+                    <div class="flex items-center justify-between"><span>Marka</span><span>Bmw</span></div>
+                    <div class="flex items-center justify-between"><span>Movel</span><span>M3</span></div>
+                    <div class="flex items-center justify-between"><span>il;</span><span>2017</span></div>
+                </div>
+            </div>
+            
+
+        </div>
+
+        <!-- Footer -->
+        <div class="border-t border-slate-300 pt-4 flex justify-end gap-4 md:pt-6">
+            <button type="button" id="cancelBtn"
+                class="px-3.5 py-2 text-slate-900 text-sm font-semibold rounded-md
+                bg-white border border-slate-300 hover:bg-slate-50">
+                Cancel
+            </button>
+
+            <button type="button"
+                class="px-3.5 py-2 text-white text-sm font-semibold rounded-md
+                bg-blue-600 border border-blue-600 hover:bg-blue-700">
+                Accept
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Open Button -->
+<button type="button" id="openModal"
+    class="px-3.5 py-2 text-white text-sm font-semibold rounded-md mx-auto block mt-6
+    bg-blue-600 hover:bg-blue-700">
+    Open Modal
+</button>
+   <script src="../js/modal.js"></script>
+   <script src="../js/app.js"></script>
+</body>
+</html>
