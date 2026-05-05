@@ -5,98 +5,80 @@ document.addEventListener("DOMContentLoaded", function () {
     const pageTitle = document.getElementById("pageTitle");
     const pageMiniTitle = document.getElementById("pageMiniTitle");
 
+    // ── Desktop nav ──────────────────────────────────────────
     navLinks.forEach(link => {
-
-        link.addEventListener("click", function(e){
+        link.addEventListener("click", function (e) {
             e.preventDefault();
 
-            // active class
+            // Hamısını default vəziyyətə qaytar
             navLinks.forEach(item => {
                 item.classList.remove("text-yellow-400");
-                item.classList.add("text-white");
+                item.classList.add("text-black");        // ✅ text-white → text-black
             });
 
-            this.classList.remove("text-white");
+            // Aktiv linki sarı et
+            this.classList.remove("text-black");
             this.classList.add("text-yellow-400");
 
-            // text change
+            // Başlıqları dəyiş
             const text = this.textContent.trim();
-
             pageTitle.textContent = text;
             pageMiniTitle.textContent = text;
         });
-
     });
-    navLinks2.forEach(link => {
 
-        link.addEventListener("click", function(e){
+    // ── Mobile nav ───────────────────────────────────────────
+    navLinks2.forEach(link => {
+        link.addEventListener("click", function (e) {
             e.preventDefault();
 
-            // active class
+            // Hamısını default-a qaytar
             navLinks2.forEach(item => {
                 item.classList.remove("text-gray-500");
                 item.classList.add("text-black");
             });
 
+            // Aktivi fərqli göstər
             this.classList.remove("text-black");
             this.classList.add("text-gray-500");
 
-            // text change
+            // Başlıqları dəyiş
             const text = this.textContent.trim();
-
             pageTitle.textContent = text;
             pageMiniTitle.textContent = text;
-        });
 
+            // ✅ Mobile menüyü bağla
+            menubars();
+        });
     });
 
 });
 
-
-//  const img = document.getElementById("zoomImg");
-
-//   img.addEventListener("mousemove", (e) => {
-//     const rect = img.getBoundingClientRect();
-
-//     const x = ((e.clientX - rect.left) / rect.width) * 100;
-//     const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-//     img.style.transformOrigin = `${x}% ${y}%`;
-//     img.style.transform = "scale(1.4)"; // 🔥 azaldıldı
-//   });
-
-//   img.addEventListener("mouseleave", () => {
-//     img.style.transform = "scale(1)";
-//     img.style.transformOrigin = "center center";
-//   });
-
+// ── Scroll kilidləmə ─────────────────────────────────────────
 function lockScroll() {
-  const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-  document.body.style.overflow = "hidden";
-  document.body.style.paddingRight = scrollBarWidth + "px";
+   document.body.style.overflow = "hidden";
 }
 
 function unlockScroll() {
-  document.body.style.overflow = "";
-  document.body.style.paddingRight = "";
+    document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
 }
 
-function menubars(){
-   let mobileMenu = document.getElementById('mobileMenu')
-   if (mobileMenu.style.display === "block") {
-    mobileMenu.classList.remove('animate__fadeInRight');
-    mobileMenu.classList.add('animate__fadeOutRight');
-    
-    unlockScroll();
-    setTimeout(() => {
-      mobileMenu.style.display = "none";
-    }, 500);
+function menubars() {
+    const mobileMenu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
 
-  } else {
-  
-    mobileMenu.style.display = "block"; 
-    lockScroll();
-    mobileMenu.classList.remove('animate__fadeOutRight');
-    mobileMenu.classList.add('animate__animated', 'animate__fadeInRight');
-  }
+    mobileMenu.classList.toggle("translate-x-full");
+
+    const isOpen = !mobileMenu.classList.contains("translate-x-full");
+
+    if (isOpen) {
+        overlay.classList.remove("opacity-0", "pointer-events-none");
+        overlay.classList.add("opacity-100");
+        lockScroll(); 
+    } else {
+        overlay.classList.add("opacity-0", "pointer-events-none");
+        overlay.classList.remove("opacity-100");
+        unlockScroll();
+    }
 }

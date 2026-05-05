@@ -6,175 +6,238 @@
     <title>Rent a Car</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </head>
-
 
   <body class="overflow-x-hidden">
     <!-- HEADER -->
     <header class="relative w-full">
-      <!-- Background -->
-      <img
-        class="w-full h-[500px] md:h-[600px] object-cover"
-        src="assets/img/imgi_44_slide1-1.jpg"
-        alt=""
-      />
+      <div>
+        <!-- Background -->
+        <img
+          class="w-full h-[500px] md:h-[600px] object-cover"
+          src="assets/img/imgi_44_slide1-1.jpg"
+          alt=""
+        />
+
+        <!-- NAVBAR -->
+        <nav
+          class="absolute top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl bg-white/10 backdrop-blur-md rounded-3xl px-4 py-4 z-20"
+        >
+          <div class="flex items-center justify-between gap-5">
+            <!-- Logo -->
+            <img
+              class="w-[180px] md:w-[250px]"
+              src="assets/img/imgi_11_logo-footer.png"
+              alt=""
+            />
+
+            <!-- Desktop Menu -->
+            <ul
+              class="hidden lg:flex flex-wrap justify-center gap-6 font-semibold italic text-base"
+            >
+              <li>
+                <a
+                  href="#"
+                  onclick="loadPage('home')"
+                  class="nav-link text-black hover:text-yellow-400 duration-300 active text-yellow-400"
+                >
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  onclick="loadPage('rent')"
+                  class="nav-link text-black hover:text-yellow-400 duration-300"
+                >
+                  Rent
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  onclick="loadPage('location')"
+                  class="nav-link text-black hover:text-yellow-400 duration-300"
+                >
+                  Location
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  onclick="loadPage('goldrevards')"
+                  class="nav-link text-black hover:text-yellow-400 duration-300"
+                >
+                  Gold Rewards
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  onclick="loadPage('about')"
+                  class="nav-link text-black hover:text-yellow-400 duration-300"
+                >
+                  About
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  onclick="loadPage('pages')"
+                  class="nav-link text-black hover:text-yellow-400 duration-300"
+                >
+                  Pages
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="#"
+                  onclick="loadPage('contact')"
+                  class="nav-link text-black hover:text-yellow-400 duration-300"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+
+            <!-- Desktop Button -->
+            <a
+              href="#"
+              class="hidden lg:block border border-yellow-400 bg-yellow-400 px-5 py-3 rounded-full font-semibold hover:text-yellow-400 hover:bg-white/0 hover:border duration-300"
+            >
+              Request a Car
+            </a>
+
+            <!-- Mobile Menu Icon -->
+            <button
+              id="menuBtn"
+              onclick="menubars()"
+              class="lg:hidden text-black text-3xl"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          </div>
+
+          <!-- Mobil Menu (Off-canvas) -->
+        </nav>
+
+        <!-- Hero Text -->
+        <div
+          id="headChange"
+          class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4"
+        >
+          <h2
+            id="pageTitle"
+            class="text-3xl md:text-5xl font-bold text-black mb-4"
+          >
+            About Us
+          </h2>
+
+          <div
+            class="flex items-center gap-2 text-yellow-400 text-sm md:text-lg"
+          >
+            <a href="#"><i class="fa-solid fa-house"></i></a>
+            <i class="fa-solid fa-angles-right"></i>
+            <span id="pageMiniTitle">About</span>
+          </div>
+        </div>
+      </div>
 
       <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/40"></div>
-
-      <!-- NAVBAR -->
-      <nav
-        class="absolute top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl bg-white/10 backdrop-blur-md rounded-3xl px-4 py-4 z-20"
-      >
-        <div class="flex items-center justify-between gap-5">
-          <!-- Logo -->
-          <img
-            class="w-[180px] md:w-[250px]"
-            src="assets/img/imgi_11_logo-footer.png"
-            alt=""
-          />
-
-          <!-- Desktop Menu -->
-          <ul
-            class="hidden lg:flex flex-wrap justify-center gap-6 font-semibold italic text-base"
-          >
-            <li>
-              <a
-                href="#"
-                onclick="loadPage('home')"
-                class="nav-link text-black hover:text-yellow-400 duration-300 active text-yellow-400"
-              >
-                Home
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                onclick="loadPage('rent')"
-                class="nav-link text-black hover:text-yellow-400 duration-300"
-              >
-                Rent
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                onclick="loadPage('location')"
-                class="nav-link text-black hover:text-yellow-400 duration-300"
-              >
-                Location
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                onclick="loadPage('goldrevards')"
-                class="nav-link text-black hover:text-yellow-400 duration-300"
-              >
-                Gold Rewards
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                onclick="loadPage('about')"
-                class="nav-link text-black hover:text-yellow-400 duration-300"
-              >
-                About
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                onclick="loadPage('pages')"
-                class="nav-link text-black hover:text-yellow-400 duration-300"
-              >
-                Pages
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                onclick="loadPage('contact')"
-                class="nav-link text-black hover:text-yellow-400 duration-300"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-          
-       
-
-          <!-- Desktop Button -->
-          <a
-            href="#"
-            class="hidden lg:block border border-yellow-400 bg-yellow-400 px-5 py-3 rounded-full font-semibold hover:text-yellow-400 hover:bg-white/0 hover:border duration-300"
-          >
-            Request a Car
-          </a>
-
-          <!-- Mobile Menu Icon -->
-          <button id="menuBtn" onclick="menubars()" class="lg:hidden text-black text-3xl">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-        </div>
-
-         <!-- Mobil Menu -->
-  
-
-      <!-- Mobil Menu (Off-canvas) -->
-      <div id="mobileMenu" style="display: none;"
-        class="fixed top-0 -right-10 w-[70%] h-[100dvh] h-[100vh] bg-yellow-500  animate__animated animate__fadeInRight
-  "
-      >
-        <ul class="p-6 space-y-4 relative ">
-          <li><a href="#" onclick="loadPage('home')" class="nav-link2 text-black">Home</a></li>
-          <li><a href="#" onclick="loadPage('rent')" class="nav-link2 text-black hover:text-gray-500">Rent</a></li>
-          <li><a href="#" onclick="loadPage('location')" class="nav-link2 text-black hover:text-gray-500">Location</a></li>
-          <li><a href="#" onclick="loadPage('goldrevards')" class="nav-link2 text-black hover:text-gray-500">Gold Rewards</a></li>
-          <li><a href="#" onclick="loadPage('about')" class="nav-link2 text-black hover:text-gray-500">About</a></li>
-          <li><a href="#" onclick="loadPage('pages')" class="nav-link2 text-black hover:text-gray-400">Pages</a></li>
-          <li><a href="#" onclick="loadPage('contact')" class="nav-link2 text-black hover:text-gray-500">Contact</a></li>
-          <li onclick="menubars()" class="absolute text-xl top-1 right-10 "><i class="fa-solid fa-angle-right"></i></li>
-        </ul>
-      </div>
-      </nav>
-      
-     
-      <!-- Hero Text -->
       <div
-        id="headChange"
-        class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4"
-      >
-        <h2
-          id="pageTitle"
-          class="text-3xl md:text-5xl font-bold text-black mb-4"
-        >
-          About Us
-        </h2>
+        id="overlay"
+        onclick="menubars()"
+        class="fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition duration-300 z-30"
+      ></div>
 
-        <div class="flex items-center gap-2 text-yellow-400 text-sm md:text-lg">
-          <a href="#"><i class="fa-solid fa-house"></i></a>
-          <i class="fa-solid fa-angles-right"></i>
-          <span id="pageMiniTitle">About</span>
-        </div>
+      <!-- Mobil Menu -->
+      <div
+        id="mobileMenu"
+        class="fixed top-0 -right-1 w-[70%] h-[100dvh] bg-yellow-500 transform translate-x-full transition-transform duration-500 z-40"
+      >
+        <ul class="p-6 space-y-4 relative">
+          <li>
+            <a href="#" onclick="loadPage('home')" class="nav-link2 text-black"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="loadPage('rent')"
+              class="nav-link2 text-black hover:text-gray-500"
+              >Rent</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="loadPage('location')"
+              class="nav-link2 text-black hover:text-gray-500"
+              >Location</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="loadPage('goldrevards')"
+              class="nav-link2 text-black hover:text-gray-500"
+              >Gold Rewards</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="loadPage('about')"
+              class="nav-link2 text-black hover:text-gray-500"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="loadPage('pages')"
+              class="nav-link2 text-black hover:text-gray-500"
+              >Pages</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="loadPage('contact')"
+              class="nav-link2 text-black hover:text-gray-500"
+              >Contact</a
+            >
+          </li>
+
+          <!-- CLOSE BUTTON -->
+          <li
+            onclick="menubars()"
+            class="absolute text-xl top-4 right-6 cursor-pointer"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </li>
+        </ul>
       </div>
     </header>
 
@@ -259,7 +322,11 @@
 
         <!-- Bottom -->
         <div class="mt-14 flex flex-col items-center text-center gap-4">
-          <img class="w-[180px]" src="assets/img/imgi_11_logo-footer.png" alt="" />
+          <img
+            class="w-[180px]"
+            src="assets/img/imgi_11_logo-footer.png"
+            alt=""
+          />
 
           <span class="text-black text-sm md:text-base">
             Copyright © 2026 Xtra Theme. All Rights Reserved. Powered by
@@ -271,6 +338,6 @@
 
     <script src="js/app.js"></script>
     <script src="js/ajax.js"></script>
-      <script src="js/rent.js"></script>
+    <script src="js/rent.js"></script>
   </body>
 </html>
