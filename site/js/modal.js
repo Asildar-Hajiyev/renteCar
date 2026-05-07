@@ -48,3 +48,22 @@ document.addEventListener("keydown", (e) => {
         }
     }
 });
+
+
+const container = document.getElementById("zoomContainer");
+const img = document.getElementById("zoomImg");
+
+container.addEventListener("mousemove", (e) => {
+  const rect = container.getBoundingClientRect();
+
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+  img.style.transformOrigin = `${x}% ${y}%`;
+  img.style.transform = "scale(2)";
+});
+
+container.addEventListener("mouseleave", () => {
+  img.style.transform = "scale(1)";
+  img.style.transformOrigin = "center";
+});

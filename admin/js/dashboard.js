@@ -153,7 +153,7 @@ function getData(data) {
                             <div class="bg-[#1e293b] rounded-2xl p-3 text-center">
                                 <p class="text-xs text-slate-400">Status</p>
                                 <h4 class="text-cyan-400 font-bold mt-1">
-                                    ${item.productStatus == '1'? 'İş Axtarır':"İş axtarmır"}
+                                    ${item.productStatus == '1'? 'Endirimli Məhsul':"Sadə Məhsul"}
                                 </h4>
                             </div>
 

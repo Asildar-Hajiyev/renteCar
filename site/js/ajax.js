@@ -1,7 +1,7 @@
 let content = document.getElementById('content')
 let ajax = new XMLHttpRequest()
 
-loadPage(window.location.hash.slice(1) ||'home')
+loadPage(window.location.hash.slice(1) ||'rent')
 function loadPage(page){
     let file = `page/${page}.htm`
     ajax.open('GET',file)
@@ -13,10 +13,9 @@ function loadPage(page){
 
              // RENT səhifəsidirsə productları gətir
             if (page === "rent") {
+               initSwiper();
+                initModal();
                 getdata();
-                   
-                 
-                initSwiper();
             }
            
            }
