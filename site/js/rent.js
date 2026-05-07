@@ -73,7 +73,7 @@ function initModal() {
 // ==========================
 
 let page = 1;
-let limit = 5;
+let limit = 4;
 function getdata() {
     let prevBtn = document.getElementById("prevBtn");
     let nextBtn = document.getElementById("nextBtn");
