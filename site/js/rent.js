@@ -71,9 +71,11 @@ function initModal() {
 // ==========================
 // GET PRODUCTS
 // ==========================
-
+// Pagination 
+// page 1 den baslasin
 let page = 1;
 let limit = 4;
+
 function getdata() {
     let prevBtn = document.getElementById("prevBtn");
     let nextBtn = document.getElementById("nextBtn");
@@ -137,7 +139,7 @@ function getdata() {
                     ${
                       item.productStatus == 1
                         ? `
-                    <marquee class="text-[#1E1601] border-y border-[#1E1601] bg-yellow-400 py-1 text-xs font-semibold" scrollamount="4" direction="left">
+                    <marquee class="absolute bottom-10 text-[#1E1601] border-y border-[#1E1601] bg-yellow-400 py-1 text-xs font-semibold" scrollamount="4" direction="left">
                         Whole Sale ⚡ Whole Sale ⚡ Whole Sale ⚡
                     </marquee>
                     `

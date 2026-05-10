@@ -86,10 +86,11 @@ let pageNum = document.getElementById("pageNum");
 
 let page = 1;
 let limit = 4;
-
+let searcData = []
 async function AllGetData() {
     let calledData = await fetch("https://69f28857b15130b97352fd41.mockapi.io/product")
     let data = await calledData.json();
+    searcData = data
     getData(data);
 }
 
@@ -114,7 +115,7 @@ function getData(data) {
 
                         <!-- CATEGORY -->
                         <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-black/50 backdrop-blur-md text-white">
-                            ${item.productStatus == "1" ? "Active" : "Deactive"}
+                            ${item.productStatus == "1" ? "Active" : "Deactive"} 
                         </span>
 
                     </div>
@@ -282,6 +283,106 @@ function resetForm(){
 function closeModal(){
     resetForm()
     modalCart.style.display = "none"
+}
+
+let searchOne = document.getElementById("searchOne")
+
+searchOne.addEventListener('input', function(){
+    let searchValue = searchOne.value
+  
+        cartList.innerHTML = "";
+    searchProduct(searchValue)
+})
+
+function searchProduct(searchOne){
+    let keywords =  searchOne.toLowerCase()
+    console.log(keywords)
+   let filterProduct =  searcData.filter(item=>item.productName.toLowerCase().includes(keywords))
+   filterProduct.map((item) => {
+                cartList.innerHTML += `
+                <div class="group bg-[#111827] border border-slate-800 rounded-3xl overflow-hidden hover:border-cyan-500/40 hover:-translate-y-1 duration-300 shadow-lg">
+
+                    <!-- IMAGE -->
+                    <div class="relative overflow-hidden">
+
+                        <img
+                            src="${item.productImage}"
+                            alt="${item.productName}"
+                            class="h-64 w-full object-cover group-hover:scale-110 duration-500"
+                        />
+
+                        <!-- CATEGORY -->
+                        <span class="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold bg-black/50 backdrop-blur-md text-white">
+                            ${item.productStatus == "1" ? "Active" : "Deactive"} 
+                        </span>
+
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div class="p-5">
+
+                        <!-- TITLE -->
+                        <div class="flex justify-between items-start gap-3">
+
+                            <h3 class="text-lg font-bold text-white leading-tight line-clamp-2">
+                                ${item.productName}
+                            </h3>
+
+                            <span class="text-cyan-400 font-bold text-lg whitespace-nowrap">
+                                $${item.productPrice}
+                            </span>
+
+                        </div>
+
+                        <!-- DESC -->
+                        <p class="text-slate-400 text-sm mt-3 leading-6 line-clamp-2 min-h-[48px]">
+                            ${item.productDesc}
+                        </p>
+
+                        <!-- INFO -->
+                        <div class="grid grid-cols-2 gap-3 mt-5">
+
+                            <div class="bg-[#1e293b] rounded-2xl p-3 text-center">
+                                <p class="text-xs text-slate-400">Stock</p>
+                                <h4 class="text-white font-bold mt-1">
+                                    ${item.productStock}
+                                </h4>
+                            </div>
+
+                            <div class="bg-[#1e293b] rounded-2xl p-3 text-center">
+                                <p class="text-xs text-slate-400">Status</p>
+                                <h4 class="text-cyan-400 font-bold mt-1">
+                                    ${item.productStatus == '1'? 'Endirimli Məhsul':"Sadə Məhsul"}
+                                </h4>
+                            </div>
+
+                        </div>
+
+                        <!-- BUTTONS -->
+                        <div class="grid grid-cols-2 gap-3 mt-5">
+
+                            <button
+                            onclick="editPorduct(${item.id})"
+                                class="cursor-pointer py-3 rounded-2xl bg-cyan-500/15 text-cyan-300 font-medium hover:bg-cyan-500/25 duration-300"
+                            >
+                                Edit
+                            </button>
+
+                            <button 
+                            onclick="deleteData(${item.id})"
+                                class="cursor-pointer py-3 rounded-2xl bg-rose-500/15 text-rose-300 font-medium hover:bg-rose-500/25 duration-300"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                `;
+            })
+
 }
 
 AllGetData();
