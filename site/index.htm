@@ -234,97 +234,55 @@
     <!-- MAIN -->
     <main id="content" class="min-h-[400px]"></main>
 
-    <!-- FOOTER -->
-    <footer class="relative pt-20 pb-10 min-h-[700px] overflow-hidden">
-      <!-- Background -->
-      <img
-        class="absolute inset-0 w-full h-full object-cover object-top -z-10"
-        src="assets/img/FOOTER.svg"
-        alt=""
-      />
+<footer>
+  <div class="relative">
+    <img class="w-full" src="assets/img/FOOTER.svg" alt="">
+    <div class="absolute top-0">
+      <img class="w-[600px]" src="assets/img/imgi_9_car-footer.png" alt="">
+    </div>
 
-      <!-- Dark layer -->
-      <div  class="absolute inset-0 bg-black/50 -z-10"></div>
+    <div class="bg-[#1E1601] px-8 py-16">
+      
+      <!-- Social - sağa hizalanmış -->
+      <ul class="flex flex-wrap gap-4 items-center justify-end mb-16">
+        <li class="bg-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-yellow-400 duration-300">
+          <a href="#"><i class="fa-brands fa-facebook-f text-gray-700"></i></a>
+        </li>
+        <li class="bg-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-yellow-400 duration-300">
+          <a href="#"><i class="fa-brands fa-x-twitter text-gray-700"></i></a>
+        </li>
+        <li class="bg-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-yellow-400 duration-300">
+          <a href="#"><i class="fa-brands fa-whatsapp text-gray-700"></i></a>
+        </li>
+        <li class="bg-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-yellow-400 duration-300">
+          <a href="#"><i class="fa-brands fa-skype text-gray-700"></i></a>
+        </li>
+      </ul>
 
-      <div class="container mx-auto px-4">
-        <!-- Top -->
-        <div
-          class="flex flex-col lg:flex-row items-center justify-between gap-10"
-        >
-          <!-- Car -->
-          <img
-            class="w-full max-w-[500px]"
-            src="assets/img/imgi_9_car-footer.png"
-            alt=""
-          />
-
-          <!-- Social -->
-          <ul class="flex flex-wrap justify-center gap-4">
-            <li
-              class="bg-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-yellow-400 duration-300"
-            >
-              <a href="#"
-                ><i class="fa-brands fa-facebook-f text-gray-700"></i
-              ></a>
-            </li>
-
-            <li
-              class="bg-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-yellow-400 duration-300"
-            >
-              <a href="#"
-                ><i class="fa-brands fa-x-twitter text-gray-700"></i
-              ></a>
-            </li>
-
-            <li
-              class="bg-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-yellow-400 duration-300"
-            >
-              <a href="#"
-                ><i class="fa-brands fa-whatsapp text-gray-700"></i
-              ></a>
-            </li>
-
-            <li
-              class="bg-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-yellow-400 duration-300"
-            >
-              <a href="#"><i class="fa-brands fa-skype text-gray-700"></i></a>
-            </li>
-          </ul>
-        </div>
-
+      <!-- Contact Box + Logo - mərkəzdə -->
+      <div class="flex flex-col items-center gap-10">
+        
         <!-- Contact Box -->
-        <div
-          class="mt-12 bg-yellow-400 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left"
-        >
-          <img
-            class="w-[80px] md:w-[100px]"
-            src="assets/img/imgi_10_mail-footer.png"
-            alt=""
-          />
-
+        <div class="bg-yellow-400 rounded-3xl p-6 flex flex-col md:flex-row items-center gap-6 text-center md:text-left w-full max-w-xl">
+          <img class="w-[80px] md:w-[100px] shrink-0" src="assets/img/imgi_10_mail-footer.png" alt="">
           <span class="text-lg md:text-2xl text-gray-800 font-medium">
             Need a Car? Contact us now with
-            <a href="#" class="underline italic font-bold">
-              +994 50 425 22 62
-            </a>
+            <a href="tel:+994504252262" class="underline italic font-bold">+994 50 425 22 62</a>
           </span>
         </div>
 
         <!-- Bottom -->
-        <div class="mt-14 flex flex-col items-center text-center gap-4">
-          <img
-            class="w-[180px]"
-            src="assets/img/imgi_11_logo-footer.png"
-            alt=""
-          />
-
+        <div class="flex flex-col items-center text-center gap-4 pb-6">
+          <img class="w-[180px]" src="assets/img/imgi_11_logo-footer.png" alt="">
           <span class="text-gray-300 text-sm md:text-base">
-            Copyright © 2026 Xtra Theme. All Rights Reserved. Powered by
-            WordPress.
+            Copyright © 2026 Xtra Theme. All Rights Reserved. Powered by WordPress.
           </span>
         </div>
+
       </div>
-    </footer>
+    </div>
+  </div>
+</footer>
 
     <script src="js/app.js"></script>
     <script src="js/ajax.js"></script>
@@ -332,3 +290,4 @@
     <script src="js/modal.js"></script>
   </body>
 </html>
+
