@@ -338,22 +338,22 @@
         <!-- SELECTS -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full xl:w-auto">
 
-          <select class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
+          <select id="selectDate" class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
             <option>Sırala</option>
             <option>Yeni</option>
             <option>Köhnə</option>
           </select>
 
-          <select class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
-            <option>Status</option>
-            <option>Aktiv</option>
-            <option>Deaktiv</option>
+          <select id="selectStatus" class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
+            <option value="">Status</option>
+            <option value="1">Aktiv</option>
+            <option value="0">Deaktiv</option>
           </select>
 
-          <select class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
-            <option>Qiymət</option>
-            <option>Ucuzdan Bahaya</option>
-            <option>Bahadan Ucuza</option>
+          <select id="selectPrice" class="px-4 py-3 rounded-2xl bg-[#1e293b] border border-slate-700 text-slate-200 focus:ring-2 focus:ring-cyan-400 outline-none">
+            <option value="">Qiymət</option>
+            <option value="ucuzdanBahaya">Ucuzdan Bahaya</option>
+            <option value="bahadanUcuza">Bahadan Ucuza</option>
           </select>
 
         </div>
